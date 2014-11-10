@@ -13,14 +13,22 @@ def print_in_file(outputfile,fname,linenum):
 	except:
 		print "Could not open read-in file '"+fname+"'. "
 
+	# blank line regex
+	search_prog2 = re.compile(" *\n")
+
 	#  write the file in at this line, write start delimiter
 	outputfile.write("c START OF BLOCK WRITTEN BY convert2singlefile.py FROM FILE "+fname+"\n")
 	outputfile.write("c --> DATE AND TIME: "+datetime.datetime.isoformat(datetime.datetime.today())+"\n")
 	for line in readfile:
-		outputfile.write(line)
+		blankline = search_prog2.match(line)
+		if blankline:
+			print "     - skipping blank line in file "+fname
+		else: 
+			outputfile.write(line)
 
 	# check to make sure last character is a return
-	if line[line.__len__()-1]:
+	if line[line.__len__()-1] != "\n":
+		print "        + appending return to inserted file "+fname
 		outputfile.write("\n")
 
 	# write end delimiter
@@ -32,7 +40,7 @@ def print_in_file(outputfile,fname,linenum):
 	readfile.close()
 
 	#  print statement to terminal
-	print "   wrote file '"+fname+"' at line "+str(linenum)
+	print "   -> wrote file '"+fname+"' at line "+str(linenum)
 
 
 ### get inputs
@@ -46,7 +54,7 @@ elif len(sys.argv) > 2:
 inputname = sys.argv[1]
 outputname = inputname.split('.')[0]+"s.i"
 
-print "Converting input "+inputname+" (and read-in files) into SINGLE FILE "+outputname+" ..."
+print "* Converting input "+inputname+" (and read-in files) into SINGLE FILE "+outputname+" ..."
 
 ### test input file
 try:
@@ -79,4 +87,4 @@ for line in inputfile:
 ### close files, print done
 inputfile.close()
 outputfile.close()
-print "DONE."
+print "* DONE."
