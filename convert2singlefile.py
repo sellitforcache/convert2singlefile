@@ -13,6 +13,9 @@ def print_in_file(outputfile,fname,linenum):
 	except:
 		print "Could not open read-in file '"+fname+"'. "
 
+	#  print statement to terminal
+	print "   -> writing file '"+fname+"' at line "+str(linenum)
+
 	# blank line regex
 	search_prog2 = re.compile(" *\n")
 
@@ -22,25 +25,21 @@ def print_in_file(outputfile,fname,linenum):
 	for line in readfile:
 		blankline = search_prog2.match(line)
 		if blankline:
-			print "     - skipping blank line in file "+fname
+			print "          - skipping blank line in file "+fname
 		else: 
 			outputfile.write(line)
 
 	# check to make sure last character is a return
 	if line[line.__len__()-1] != "\n":
-		print "        + appending return to inserted file "+fname
+		print "          + appending return to inserted file "+fname
 		outputfile.write("\n")
 
 	# write end delimiter
 	outputfile.write("c END OF BLOCK WRITTEN BY convert2singlefile.py FROM FILE "+fname+"\n")
 	outputfile.write("c --> DATE AND TIME: "+datetime.datetime.isoformat(datetime.datetime.today())+"\n")
 
-
 	# close read-in file
 	readfile.close()
-
-	#  print statement to terminal
-	print "   -> wrote file '"+fname+"' at line "+str(linenum)
 
 
 ### get inputs
