@@ -1,7 +1,10 @@
 #! /usr/bin/env python
+#  script to convert newer MCNP inputs which have 'read file' cards into a single file for use with MCNPX 2.4.0, which is openly distributed
+#  Ryan M. Bergmann, Paul Scherrer Institut, Nov. 10, 2014
 
 import sys
 import re
+import datetime
 
 def print_in_file(outputfile,fname,linenum):
 	# try to open read-in file
@@ -10,17 +13,26 @@ def print_in_file(outputfile,fname,linenum):
 	except:
 		print "Could not open read-in file '"+fname+"'. "
 
-	#  write the file in at this line, write delimiters
+	#  write the file in at this line, write start delimiter
 	outputfile.write("c START OF BLOCK WRITTEN BY convert2singlefile.py FROM FILE "+fname+"\n")
+	outputfile.write("c --> DATE AND TIME: "+datetime.datetime.isoformat(datetime.datetime.today())+"\n")
 	for line in readfile:
 		outputfile.write(line)
+
+	# check to make sure last character is a return
+	if line[line.__len__()-1]:
+		outputfile.write("\n")
+
+	# write end delimiter
 	outputfile.write("c END OF BLOCK WRITTEN BY convert2singlefile.py FROM FILE "+fname+"\n")
+	outputfile.write("c --> DATE AND TIME: "+datetime.datetime.isoformat(datetime.datetime.today())+"\n")
+
 
 	# close read-in file
 	readfile.close()
 
 	#  print statement to terminal
-	print "   wrote file '"+fname+"' at line "+linenum
+	print "   wrote file '"+fname+"' at line "+str(linenum)
 
 
 ### get inputs
@@ -49,13 +61,18 @@ except:
 	print "Could not open file '"+outputname+"' for writing. "
 
 ### make and compile regex
-
+search_prog = re.compile("read +file +([0-9a-zA-Z_.+-]+)")
 
 ### scan lines, looking for 'read'
-linenum = 0
+linenum = 1
 for line in inputfile:
-	if:
+	results = search_prog.search(line)
+	if results:
+		fname = results.group(1) 
 		print_in_file(outputfile,fname,linenum)
+		#print(line)
+	else:
+		outputfile.write(line)
 	linenum = linenum + 1
 
 
