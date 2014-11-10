@@ -4,7 +4,7 @@ convert2singlefile.py
 
 Python script to convert newer MCNP inputs which have 'read file' cards into a single file for use with MCNPX 2.4.0, which is openly distributed. Can be useful in situations where people are waiting for license approval.
 
-## USAGE:
+### USAGE:
 
 Arguments:
 - input_file:   name of file to consilidate, required
