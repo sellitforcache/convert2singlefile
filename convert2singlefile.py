@@ -33,7 +33,7 @@ def print_in_file(outputfile,fname,linenum):
 
 	# check to make sure last character is a return
 	if line[line.__len__()-1] != "\n":
-		print "          + appending return to inserted file "+fname
+		print "          + appending final carriage return to inserted file "+fname
 		outputfile.write("\n")
 
 	# write end delimiter
@@ -55,7 +55,7 @@ elif len(sys.argv) > 2:
 inputname = sys.argv[1]
 outputname = inputname.split('.')[0]+"s.i"
 
-print "* Converting input "+inputname+" (and read-in files) into SINGLE FILE "+outputname+" ..."
+print "* Converting input '"+inputname+"' (and read-in files) into SINGLE FILE '"+outputname+"' ..."
 
 ### test input file
 try:
