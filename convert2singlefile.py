@@ -48,12 +48,15 @@ def print_in_file(outputfile,fname,linenum):
 if len(sys.argv) == 1:
 	print "ERROR - You must specify an input file"
 	exit(0)
-elif len(sys.argv) > 2:
-        print "ERROR - You must specify a SINGLE input file"
-        exit(0)
-
-inputname = sys.argv[1]
-outputname = inputname.split('.')[0]+"s.i"
+elif len(sys.argv) == 2:
+	inputname = sys.argv[1]
+	outputname = inputname.split('.')[0]+"s.i"
+elif len(sys.argv) == 3:
+	inputname = sys.argv[1]
+	outputname = sys.argv[2]
+elif len(sys.argv) > 3:
+    print "ERROR - Too Many arguments.  USAGE:  convert2singlefile.py input_file [output_file]"
+    exit(0)
 
 print "* Converting input '"+inputname+"' (and read-in files) into SINGLE FILE '"+outputname+"' ..."
 
