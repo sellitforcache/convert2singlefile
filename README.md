@@ -7,7 +7,7 @@ Python script to convert newer MCNP inputs which have 'read file' cards into a s
 USAGE:
 
 - input_file:   name of file to consilidate, required
-- output_file:  name of written outputfile, optional
+- output_file:  name of consolidated output file, optional (script will append an 's' to the input file name preceeding the file extension)
 
 ``` bash
 $ ./convert2singlefile.py input_file [output_file]
