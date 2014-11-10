@@ -1,4 +1,4 @@
-convert2singlefile
+convert2singlefile.py
 ========
 **Ryan M. Bergmann, Paul Scherrer Institut, Nov. 10, 2014.**
 
@@ -7,5 +7,5 @@ Python script to convert newer MCNP inputs which have 'read file' cards into a s
 USAGE:
 
 ``` bash
-$ ./convert2singlefile [input_file]
+$ ./convert2singlefile.py [input_file]
 ```
