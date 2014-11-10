@@ -19,7 +19,7 @@ def print_in_file(outputfile,fname,linenum):
 	print "   -> writing file '"+fname+"' at line "+str(linenum)
 
 	# blank line regex
-	search_prog2 = re.compile(" *\n")
+	search_prog2 = re.compile("\s*\n")
 
 	#  write the file in at this line, write start delimiter
 	outputfile.write("c START OF BLOCK WRITTEN BY convert2singlefile.py FROM FILE "+fname+"\n")
