@@ -1,7 +1,8 @@
 #! /usr/bin/env python
 #  Script to convert newer MCNP inputs which have 'read file' cards 
-#  into a single file for use with MCNPX 2.4.0, which is openly distributed
-#  ---- Ryan M. Bergmann, Paul Scherrer Institut, Nov. 10, 2014
+#  into a single file for use with MCNPX 2.4.0, which is openly distributed.
+#  Can be useful in situations where people are waiting for license approval.
+#  ---- Ryan M. Bergmann, Paul Scherrer Institut, Nov. 10, 2014.
 
 import sys
 import re
