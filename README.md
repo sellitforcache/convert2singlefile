@@ -6,4 +6,6 @@ Python script to convert newer MCNP inputs which have 'read file' cards into a s
 
 USAGE:
 
+``` bash
 $ ./convert2singlefile [input_file]
+```
