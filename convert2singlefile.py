@@ -78,7 +78,7 @@ search_prog = re.compile("read +file +([0-9a-zA-Z_.+-]+)")
 ### scan lines, looking for 'read'
 linenum = 1
 for line in inputfile:
-	results = search_prog.search(line)
+	results = search_prog.match(line)
 	if results:
 		fname = results.group(1) 
 		print_in_file(outputfile,fname,linenum)
